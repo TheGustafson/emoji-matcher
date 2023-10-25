@@ -49,7 +49,7 @@ function MatchingGame() {
     if (startTime === null) {
       startTimer();
     }
-    if (flippedIndices.length === 2 || tiles[index].isMatched) {
+    if (flippedIndices.includes(index) || flippedIndices.length === 2 || tiles[index].isMatched) {
         return;
       }
   
@@ -85,7 +85,7 @@ function MatchingGame() {
       setIsShuffling(true);
       setTimeout(() => {
         setIsShuffling(false);
-        setTiles(generateTiles());
+        setTiles(generateTiles());  
         setFlippedIndices([]);
         setShowUnmatch(false);
         setIsWon(false);
