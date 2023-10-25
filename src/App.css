@@ -1,0 +1,114 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+/* Add to App.css or a new CSS file */
+
+
+.container {
+  display: flex;
+  padding-top: 20px; 
+  flex-direction: column;  /* This line ensures the timer and board are stacked vertically */
+  align-items: center;
+  min-height: 100vh;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.tile {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #5790db;
+  cursor: pointer;
+  font-size: 64px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.tile.hidden {
+  background-color: #ac3ad8;
+  cursor: default;
+}
+
+.tile.matched {
+  background-color: green;
+}
+
+.tile.unmatched {
+  background-color: red;
+}
+
+@keyframes victorySpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.tile.won {
+  animation: victorySpin 4s linear infinite;
+} 
+
+.timer {
+  font-size: 84px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: white;
+}
+
+.restart-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@keyframes shuffle {
+  0% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(-10px, 10px) rotate(-15deg); }
+  50% { transform: translate(10px, -10px) rotate(15deg); }
+  75% { transform: translate(-10px, 10px) rotate(-15deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+.tile.shuffling {
+  animation: shuffle 1.5s ease-out;
+}
+
+@media (max-width: 640px) {
+  .board {
+    grid-template-columns: repeat(4, 1fr); /* Adjust grid for smaller screens */
+  }
+  .tile {
+    width: 65px; /* Adjust tile size for smaller screens */
+    height: auto;
+  }
+  .timer {
+    font-size: 36px; /* Adjust font size for smaller screens */
+  }
+  /* ... other styles ... */
+}
+
+@media (max-height: 750px) {
+  .board {
+    grid-template-columns: repeat(4, 1fr); /* Adjust grid for smaller screens */
+  }
+  .tile {
+    width: 65px;
+    height: 65px; /* Adjust tile size for smaller screens */
+  }
+  .timer {
+    font-size: 36px; /* Adjust font size for smaller screens */
+  }
+  /* ... other styles ... */
+}
