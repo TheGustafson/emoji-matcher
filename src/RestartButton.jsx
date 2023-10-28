@@ -1,7 +1,7 @@
 // src/components/RestartButton.jsx
 import { useCallback, React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectIsWon, selectTiles, selectIntervalId, setTiles, setIsShuffling, setFlippedIndices, setShowUnmatch, setIsWon, setStartTime, setElapsedTime, setIntervalId, generateTiles} from './redux/gameSlice';
+import { selectIsWon, selectTiles, selectIntervalId, setTiles, setIsShuffling, selectGameMode, setFlippedIndices, setShowUnmatch, setIsWon, setStartTime, setElapsedTime, setIntervalId, generateTiles} from './redux/gameSlice';
 import './App.css'
 
 function RestartButton() {
@@ -9,6 +9,7 @@ function RestartButton() {
   const tiles = useSelector(selectTiles);
   const dispatch = useDispatch();
   const intervalId = useSelector(selectIntervalId);
+  const gameMode = useSelector(selectGameMode);
 
   const restartGame = useCallback(() => {
     dispatch(setTiles(tiles.map(tile => ({ ...tile, isMatched: false }))));
@@ -16,7 +17,7 @@ function RestartButton() {
       dispatch(setIsShuffling(true));
       setTimeout(() => {
         dispatch(setIsShuffling(false));
-        dispatch(setTiles(generateTiles()));
+        dispatch(setTiles(generateTiles(gameMode)));
         dispatch(setFlippedIndices([]));
         dispatch(setShowUnmatch(false));
         dispatch(setIsWon(false));

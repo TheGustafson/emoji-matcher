@@ -1,36 +1,31 @@
 // src/features/gameSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-
-export const generateTiles = createAsyncThunk(
-  'game/generateTiles',
-  async (_, { getState }) => {
-    const mode = selectGameMode(getState());
-    let values;
-    switch (mode) {
-      case 'easy':
-        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩'];  // 6 unique values for a 3x4 board
-        break;
-      case 'medium':
-        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // 8 unique values for a 4x4 board
-        break;
-      case 'hard':
-        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰', '🦄', '🐶', '🐱', '🐭'];  // 12 unique values for a 4x6 board
-        break;
-      default:
-        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // Default to medium (4x4)
-    }
-    const doubleValues = values.concat(values);  // Create pairs
-    const shuffledTiles = doubleValues
-      .sort(() => Math.random() - 0.5)
-      .map(value => ({ value, isMatched: false }));
-    return shuffledTiles;
+export const generateTiles = (mode) => {
+  let values;
+  switch (mode) {
+    case 'easy':
+      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩'];  // 6 unique values for a 3x4 board
+      break;
+    case 'medium':
+      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // 8 unique values for a 4x4 board
+      break;
+    case 'hard':
+      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰', '🦄', '🐶', '🐱', '🐭'];  // 12 unique values for a 4x6 board
+      break;
+    default:
+      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // Default to medium (4x4)
   }
-);
-
+  const doubleValues = values.concat(values);  // Create pairs
+  const shuffledTiles = doubleValues
+    .sort(() => Math.random() - 0.5)
+    .map(value => ({ value, isMatched: false }));
+  return shuffledTiles;
+};
 
 const initialState = {
-  tiles: generateTiles(),
+  tiles: [],
+  gameMode: null,
   flippedIndices: [],
   showUnmatch: false,
   isWon: false,
@@ -45,7 +40,8 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     setGameMode(state, action) {
-        state.gameMode = action.payload;
+      state.gameMode = action.payload;
+      state.tiles = generateTiles(action.payload);  // Update tiles when game mode is set
     },
     resetGameMode(state) {
       state.gameMode = null;

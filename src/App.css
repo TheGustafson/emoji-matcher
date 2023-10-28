@@ -120,34 +120,45 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f0f0f0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  margin-bottom: 20px; /* Reduced margin for proximity to buttons */
+  font-size: 2.5em;
+  color: #e3d0d0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Flex container for the buttons to ensure they are in a row */
+.buttons-row {
+  display: flex;
+  gap: 20px; /* Space between buttons */
 }
 
 .menu-button {
-  background-color: #6200ea;
+  background: linear-gradient(90deg, #6200ea, #9a67ea);
   border: none;
   color: white;
   text-align: center;
-  text-decoration: none;
+  font-weight: 500;
   display: inline-block;
   font-size: 20px;
-  margin: 4px 2px;
+  margin: 10px 2px;
   cursor: pointer;
-  border-radius: 12px;
-  padding: 15px 32px;
-  transition: background-color 0.3s;
+  border-radius: 20px;
+  padding: 15px 40px;
+  transition: all 0.3s;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
 }
 
 .menu-button:hover {
-  background-color: #3700b3;
+  background: linear-gradient(90deg, #9a67ea, #6200ea);
+  transform: translateY(-5px);
+  box-shadow: 0px 7px 20px rgba(0,0,0,0.15);
 }
 
 .menu-button:focus {
   outline: none;
-}
-
-/* Adjust the margin between buttons */
-.menu-button + .menu-button {
-  margin-top: 20px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
 }
