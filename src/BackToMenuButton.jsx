@@ -12,7 +12,7 @@ function BackToMenuButton() {
   };
 
   return (
-    <button className="restart-button" onClick={handleBackToMenu}>
+    <button className="menu-button" onClick={handleBackToMenu}>
       Back to Menu
     </button>
   );

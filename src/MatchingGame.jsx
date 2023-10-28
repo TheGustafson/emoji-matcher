@@ -8,6 +8,7 @@ import BackToMenuButton from './BackToMenuButton';
 import './App.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectGameMode } from './redux/gameSlice';
+import EmojiRain from './EmojiRain';
 
 function MatchingGame() {
   
@@ -22,6 +23,7 @@ function MatchingGame() {
           <Board />
           <RestartButton />
           <BackToMenuButton />
+          <EmojiRain speed={500} />
         </>
       ) : (
         <Menu />

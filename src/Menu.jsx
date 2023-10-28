@@ -1,7 +1,9 @@
 // src/components/Menu.jsx
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setTiles, setGameMode, generateTiles} from './redux/gameSlice';
+import EmojiRain from './EmojiRain';
 
 function Menu() {
   const dispatch = useDispatch();
@@ -11,10 +13,10 @@ function Menu() {
     dispatch(setTiles(generateTiles(mode)));
   };
 
+  
   return (
     <div className="menu-container">
       <h1>🥰 MatchMoji 😍</h1>
-      <div className="buttons-row"> {/* Added this container */}
         <button
           className="menu-button"
           onClick={() => handleSelectMode('easy')}
@@ -33,7 +35,10 @@ function Menu() {
         >
           Hard
         </button>
-      </div> {/* End of buttons-row container */}
+        <EmojiRain speed={500}/>
+        <EmojiRain speed={400}/>
+        <EmojiRain speed={350}/>
+        <span className="emoji-spinner">🌀</span>
     </div>
   );  
 }

@@ -33,7 +33,7 @@ function RestartButton() {
 
 
   return (
-    <button className="restart-button" onClick={restartGame}>
+    <button className="menu-button" onClick={restartGame}>
       Restart
     </button>
   );

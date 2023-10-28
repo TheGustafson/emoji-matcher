@@ -13,12 +13,29 @@
   flex-direction: column;  /* This line ensures the timer and board are stacked vertically */
   align-items: center;
   min-height: 100vh;
+  z-index: 2;
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+  z-index: 2;
+}
+
+.tile.hidden {
+  background: linear-gradient(90deg, #6200ea, #9a67ea);
+  cursor: default;
+}
+
+.tile.matched {
+  background: linear-gradient(90deg, #00ea37b4, #88ea67b7);
+  z-index: 2;
+}
+
+.tile.unmatched {
+  background: linear-gradient(90deg, #ea0000, #ea6767);
+  z-index: 2;
 }
 
 .tile {
@@ -27,24 +44,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #5790db;
+  background: linear-gradient(90deg, #6200ea, #9a67ea);
   cursor: pointer;
   font-size: 64px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   user-select: none;
 }
 
-.tile.hidden {
-  background-color: #ac3ad8;
-  cursor: default;
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 7px rgba(0,0,0,0.15);
 }
 
-.tile.matched {
-  background-color: green;
-}
-
-.tile.unmatched {
-  background-color: red;
+.tile:focus {
+  outline: none;
+  box-shadow: 0px 4px 7px rgba(0,0,0,0.2);
 }
 
 @keyframes victorySpin {
@@ -72,6 +86,7 @@
   padding: 10px 20px;
   font-size: 24px;
   cursor: pointer;
+  z-index: 2;
 }
 
 @keyframes shuffle {
@@ -116,38 +131,38 @@
 
 .menu-container {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;  /* Adjusted this */
+  padding-top: 10vh;  /* Adjust this value to your liking */
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
+  z-index: 1;
 }
 
 h1 {
-  margin-bottom: 20px; /* Reduced margin for proximity to buttons */
+  margin-bottom: 20px; 
   font-size: 2.5em;
-  color: #e3d0d0;
+  color: #e6dada;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Flex container for the buttons to ensure they are in a row */
-.buttons-row {
-  display: flex;
-  gap: 20px; /* Space between buttons */
+  z-index: 1;
 }
 
 .menu-button {
+  position: relative;
+  z-index: 3;
   background: linear-gradient(90deg, #6200ea, #9a67ea);
   border: none;
   color: white;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   display: inline-block;
-  font-size: 20px;
-  margin: 10px 2px;
+  font-size: 26px;
+  margin: 15px 10px;
   cursor: pointer;
-  border-radius: 20px;
-  padding: 15px 40px;
+  border-radius: 25px;
+  padding: 20px 40px;
   transition: all 0.3s;
   box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
 }
@@ -161,4 +176,45 @@ h1 {
 .menu-button:focus {
   outline: none;
   box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.emoji-spinner {
+  display: inline-block;
+  font-size: 85px;
+  margin-top: 30px;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes popEffect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.emoji-effects {
+  overflow: hidden;  
+  width: 100vw;
+  height: 100vh;
+  position: fixed;  
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0; 
+}
+
+.emoji-echo {
+  position: absolute;
+  font-size: 50px;
+  animation: popEffect 2s forwards;  
 }
