@@ -1,13 +1,33 @@
 // src/features/gameSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const generateTiles = () => {
-  const values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];
-  const doubleValues = values.concat(values);
-  return doubleValues
-    .sort(() => Math.random() - 0.5)
-    .map(value => ({ value, isMatched: false }));
-};
+
+export const generateTiles = createAsyncThunk(
+  'game/generateTiles',
+  async (_, { getState }) => {
+    const mode = selectGameMode(getState());
+    let values;
+    switch (mode) {
+      case 'easy':
+        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩'];  // 6 unique values for a 3x4 board
+        break;
+      case 'medium':
+        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // 8 unique values for a 4x4 board
+        break;
+      case 'hard':
+        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰', '🦄', '🐶', '🐱', '🐭'];  // 12 unique values for a 4x6 board
+        break;
+      default:
+        values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // Default to medium (4x4)
+    }
+    const doubleValues = values.concat(values);  // Create pairs
+    const shuffledTiles = doubleValues
+      .sort(() => Math.random() - 0.5)
+      .map(value => ({ value, isMatched: false }));
+    return shuffledTiles;
+  }
+);
+
 
 const initialState = {
   tiles: generateTiles(),
@@ -24,6 +44,12 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    setGameMode(state, action) {
+        state.gameMode = action.payload;
+    },
+    resetGameMode(state) {
+      state.gameMode = null;
+    },
     setTiles: (state, action) => {
       state.tiles = action.payload;
     },
@@ -77,6 +103,8 @@ export const gameSlice = createSlice({
 });
 
 export const {
+  setGameMode,
+  resetGameMode,
   setTiles,
   setFlippedIndices,
   setShowUnmatch,
@@ -92,6 +120,7 @@ export const {
   handleTileClick,
 } = gameSlice.actions;
 
+export const selectGameMode = state => state.game.gameMode;
 export const selectTiles = state => state.game.tiles;
 export const selectFlippedIndices = state => state.game.flippedIndices;
 export const selectShowUnmatch = state => state.game.showUnmatch;

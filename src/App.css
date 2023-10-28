@@ -113,3 +113,41 @@
   }
   /* ... other styles ... */
 }
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+}
+
+.menu-button {
+  background-color: #6200ea;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 15px 32px;
+  transition: background-color 0.3s;
+}
+
+.menu-button:hover {
+  background-color: #3700b3;
+}
+
+.menu-button:focus {
+  outline: none;
+}
+
+/* Adjust the margin between buttons */
+.menu-button + .menu-button {
+  margin-top: 20px;
+}
