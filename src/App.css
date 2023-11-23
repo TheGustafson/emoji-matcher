@@ -26,12 +26,12 @@
 }
 
 .tile.hidden {
-  background: linear-gradient(90deg, #6200ea, #9a67ea);
+  background: linear-gradient(90deg, #025f02, #0ea81b);
   cursor: default;
 }
 
 .tile.matched {
-  background: linear-gradient(90deg, #00ea37b4, #88ea67b7);
+  background: linear-gradient(90deg, #02f83bb4, #a0f784b7);
   z-index: 2;
 }
 
@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, #6200ea, #9a67ea);
+  background: linear-gradient(90deg, #025f02, #0ea81b);
   cursor: pointer;
   font-size: 64px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -149,7 +149,7 @@ h1 {
 .menu-button {
   position: relative;
   z-index: 3;
-  background: linear-gradient(90deg, #6200ea, #9a67ea);
+  background: linear-gradient(90deg, #025f02, #0ea81b);
   border: none;
   color: white;
   text-align: center;
@@ -165,7 +165,7 @@ h1 {
 }
 
 .menu-button:hover {
-  background: linear-gradient(90deg, #9a67ea, #6200ea);
+  background: linear-gradient(90deg, #027202, #10b91e);
   transform: translateY(-5px);
   box-shadow: 0px 7px 20px rgba(0,0,0,0.15);
 }

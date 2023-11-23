@@ -1,25 +1,38 @@
 // src/features/gameSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const generateTiles = (mode) => {
   let values;
   switch (mode) {
-    case 'easy':
-      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩'];  // 6 unique values for a 3x4 board
+    case "easy":
+      values = ["🥳", "😇", "🤪", "🥺", "❄️", "🎄"]; // 6 unique values for a 3x4 board
       break;
-    case 'medium':
-      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // 8 unique values for a 4x4 board
+    case "medium":
+      values = ["🥳", "😇", "🤪", "🥺", "❄️", "🎄", "🦌", "⛄️"]; // 8 unique values for a 4x4 board
       break;
-    case 'hard':
-      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰', '🦄', '🐶', '🐱', '🐭'];  // 12 unique values for a 4x6 board
+    case "hard":
+      values = [
+        "🥳",
+        "😇",
+        "🤪",
+        "🥺",
+        "❄️",
+        "🎄",
+        "🦌",
+        "⛄️",
+        "⛸️",
+        "🧊",
+        "🎅",
+        "🎁",
+      ]; // 12 unique values for a 4x6 board
       break;
     default:
-      values = ['🥳', '😇', '🤪', '🥺', '🎃', '💩', '👻', '🥰'];  // Default to medium (4x4)
+      values = ["🥳", "😇", "🤪", "🥺", "❄️", "💩", "👻", "🥰"]; // Default to medium (4x4)
   }
-  const doubleValues = values.concat(values);  // Create pairs
+  const doubleValues = values.concat(values); // Create pairs
   const shuffledTiles = doubleValues
     .sort(() => Math.random() - 0.5)
-    .map(value => ({ value, isMatched: false }));
+    .map((value) => ({ value, isMatched: false }));
   return shuffledTiles;
 };
 
@@ -36,12 +49,12 @@ const initialState = {
 };
 
 export const gameSlice = createSlice({
-  name: 'game',
+  name: "game",
   initialState,
   reducers: {
     setGameMode(state, action) {
       state.gameMode = action.payload;
-      state.tiles = generateTiles(action.payload);  // Update tiles when game mode is set
+      state.tiles = generateTiles(action.payload); // Update tiles when game mode is set
     },
     resetGameMode(state) {
       state.gameMode = null;
@@ -89,7 +102,7 @@ export const gameSlice = createSlice({
       state.intervalId = null;
     },
     checkForWin(state) {
-      state.isWon = state.tiles.every(tile => tile.isMatched);
+      state.isWon = state.tiles.every((tile) => tile.isMatched);
       if (state.isWon && state.intervalId !== null) {
         clearInterval(state.intervalId);
         state.intervalId = null;
@@ -116,15 +129,14 @@ export const {
   handleTileClick,
 } = gameSlice.actions;
 
-export const selectGameMode = state => state.game.gameMode;
-export const selectTiles = state => state.game.tiles;
-export const selectFlippedIndices = state => state.game.flippedIndices;
-export const selectShowUnmatch = state => state.game.showUnmatch;
-export const selectIsWon = state => state.game.isWon;
-export const selectIsShuffling = state => state.game.isShuffling;
-export const selectStartTime = state => state.game.startTime;
-export const selectElapsedTime = state => state.game.elapsedTime;
-export const selectIntervalId = state => state.game.intervalId;
+export const selectGameMode = (state) => state.game.gameMode;
+export const selectTiles = (state) => state.game.tiles;
+export const selectFlippedIndices = (state) => state.game.flippedIndices;
+export const selectShowUnmatch = (state) => state.game.showUnmatch;
+export const selectIsWon = (state) => state.game.isWon;
+export const selectIsShuffling = (state) => state.game.isShuffling;
+export const selectStartTime = (state) => state.game.startTime;
+export const selectElapsedTime = (state) => state.game.elapsedTime;
+export const selectIntervalId = (state) => state.game.intervalId;
 
 export default gameSlice.reducer;
-
