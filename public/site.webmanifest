@@ -1,17 +1,27 @@
 {
-    "name": "MatchMoji ",
+    "name": "MatchMoji",
     "short_name": "MMJ",
     "icons": [
-        {
-            "src": "/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-chrome-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
-        }
+      {
+        "src": "/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/android-chrome-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+      }
     ],
-    "display": "standalone"
-}
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#000000",
+    "id": "com.matchmojigame",
+    "description": "A fun puzzle matching game for all ages.",
+    "start_url": "thegustafson.github.io/emoji-matcher",
+    "categories": [
+      "games",
+      "kids"
+    ]
+  }
+  
