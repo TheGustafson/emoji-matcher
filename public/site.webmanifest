@@ -48,7 +48,7 @@
     "background_color": "#000000",
     "id": "com.matchmojigame",
     "description": "A fun puzzle matching game for all ages.",
-    "start_url": "thegustafson.github.io/emoji-matcher",
+    "start_url": "https://thegustafson.github.io/emoji-matcher/",
     "categories": [
       "games",
       "kids"
