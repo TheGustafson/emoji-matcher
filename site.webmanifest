@@ -34,7 +34,7 @@
         "type": "image/png"
       }
     ],
-    "display": "standalone",
+    "display": "fullscreen",
     "display_override": [
       "window-controls-overlay",
       "standalone",
