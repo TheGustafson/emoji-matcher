@@ -35,6 +35,14 @@
       }
     ],
     "display": "standalone",
+    "display_override": [
+      "window-controls-overlay",
+      "standalone",
+      "browser"
+    ],
+    "edge_side_panel": {
+      "preferred_width": 400
+    },
     "orientation": "portrait",
     "theme_color": "#000000",
     "background_color": "#000000",
