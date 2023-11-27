@@ -4,32 +4,32 @@
     "icons": [
 
       {
-        "src": "/icons/ios/512.png",
+        "src": "/emoji-matcher/icons/ios/512.png",
         "sizes": "512x512",
         "type": "image/png"
       },
       {
-        "src": "/icons/android/android-launchericon-512-512.png",
+        "src": "/emoji-matcher/icons/android/android-launchericon-512-512.png",
         "sizes": "512x512",
         "type": "image/png"
       },
       {
-        "src": "/icons/ios/192.png",
+        "src": "/emoji-matcher/icons/ios/192.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/icons/android/android-launchericon-192-192.png",
+        "src": "/emoji-matcher/icons/android/android-launchericon-192-192.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/icons/ios/32.png",
+        "src": "/emoji-matcher/icons/ios/32.png",
         "sizes": "32x32",
         "type": "image/png"
       },
       {
-        "src": "/icons/ios/16.png",
+        "src": "/emoji-matcher/icons/ios/16.png",
         "sizes": "32x32",
         "type": "image/png"
       }
@@ -55,19 +55,19 @@
     ],
     "screenshots" : [
       {
-        "src": "/screenshots/screenshot1.png",
+        "src": "/emoji-matcher/screenshots/screenshot1.png",
         "sizes": "888x1100",
         "type": "image/png",
         "label": "Homescreen of MatchMoji."
       },
       {
-        "src": "/screenshots/screenshot2.png",
+        "src": "/emoji-matcher/screenshots/screenshot2.png",
         "sizes": "888x1100",
         "type": "image/png",
         "label": "Medium difficulty game."
       },
       {
-        "src": "/screenshots/screenshot2.png",
+        "src": "/emoji-matcher/screenshots/screenshot2.png",
         "sizes": "888x1100",
         "type": "image/png",
         "label": "Easy difficulty game."
