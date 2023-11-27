@@ -1,18 +1,20 @@
-const CACHE_NAME = "cool-cache";
+// This is the "Offline copy of pages" service worker
 
-// Add whichever assets you want to precache here:
-const PRECACHE_ASSETS = ["/src/", "/icons/"];
+const CACHE = "pwabuilder-offline";
 
-// Listener for the install event - precaches our assets list on service worker install.
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      cache.addAll(PRECACHE_ASSETS);
-    })()
-  );
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js"
+);
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
-self.addEventListener("activate", (event) => {
-  event.waitUntil(self.clients.claim());
-});
+workbox.routing.registerRoute(
+  new RegExp("/*"),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE,
+  })
+);
